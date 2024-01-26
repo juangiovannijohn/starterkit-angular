@@ -1,0 +1,41 @@
+<ng-container>
+<div class="">
+  <ng-container *ngIf="!showIntranet">
+    <form [formGroup]="loginFormWP" (ngSubmit)="login()" class="w-full">
+      <div class="">
+        <label class="" for="email">Email</label>
+        <input [ngClass]="" id="email"
+          formControlName="email" class="" type="email"
+          placeholder="prueba@prueba.com" autocomplete="email" />
+      </div>
+      <div class="">
+        <label class="" for="pass">Password</label>
+        <input [ngClass]="" id="pass"
+          formControlName="pass" class="" type="password" placeholder="******" autocomplete="current-password"  />
+      </div>
+      <div>
+        <button [ngClass]="" type="submit" class=""
+          [disabled]="loading || showIntranet || !loginFormWP.valid" >
+          {{ loading ? 'Enviando...' : 'Login pass' }}
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="showIntranet; else newUser">
+    <h4 class=" ">Sesión iniciada</h4>
+    <a class=" "
+      routerLink="/intranet"> Ingresar -> </a>
+  </ng-container>
+  <ng-template #newUser>
+    <div class="">
+      <a class="" routerLink="/signup"> Crear
+        usuario </a>
+      <a class=""
+        routerLink="/reset">Olvide mi contraseña</a>
+    </div>
+  </ng-template>
+
+</div>
+</ng-container>
+<app-alert-message-modal [message]="messageModal" [classes]="classesModal" (close)="closeAlert()"
+*ngIf="showAlertModal"></app-alert-message-modal>

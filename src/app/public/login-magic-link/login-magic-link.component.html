@@ -1,0 +1,23 @@
+<div class="">
+    <div class="" aria-live="polite">
+      <h1 class="">Supabase + Angular</h1>
+      <p class="">Sign in via magic link with your email below</p>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="form-widget">
+        <div>
+          <label for="email">Email</label>
+          <input
+            id="email"
+            formControlName="email"
+            class="inputField"
+            type="email"
+            placeholder="Your email"
+          />
+        </div>
+        <div>
+          <button type="submit" class="" [disabled]="loading">
+            {{ loading ? 'Loading' : 'Send magic link' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

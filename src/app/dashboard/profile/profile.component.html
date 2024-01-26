@@ -1,0 +1,25 @@
+<form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" class="form-widget">
+    <!-- <div>
+      <label for="email">Email</label>
+      <input id="email" type="text" [value]="session.user.email" disabled />
+    </div> -->
+    <div class="flex flex-row gap-2 items-center">
+      <label for="username">Name</label>
+      <input class="bg-white/20 p-2 rounded text-white" formControlName="username" id="username" type="text" />
+    </div>
+    <div class="flex flex-row gap-2 items-center">
+      <label for="usersurname">Apellido</label>
+      <input class="bg-white/20 p-2 rounded text-white" formControlName="usersurname" id="usersurname" type="text" />
+    </div>
+    <div class="flex flex-row gap-2 items-center">
+        <label for="website">Website</label>
+        <input class="bg-white/20 p-2 rounded text-white" formControlName="website" id="website" type="url" />
+      </div>
+  
+    <div>
+      <button type="submit" class="bg-white/10 text-white  py-1 px-3 rounded-md opacity-90 hover:opacity-100 ease-in-out duration-100" [disabled]="loading">
+        {{ loading ? 'Loading ...' : 'Update' }}
+      </button>
+    </div>
+
+  </form>

@@ -1,0 +1,52 @@
+<div>
+    <h2 class=" text-2xl text-center my-3">Roles</h2>
+    <div>
+        <h3>ABM Roles</h3>
+        <div class="flex flex-col gap-2">
+            <ng-container *ngFor="let rol of roles">
+                <div  class="p-3 bg-white/10 flex flex-row items-center gap-2">
+                    <p>{{rol.name}}</p>
+                    <button class="bg-white/10 text-white  py-1 px-3 rounded-md opacity-90 hover:opacity-100 ease-in-out duration-100" (click)="showFormEditRole(rol.id)">Editar</button>
+                    <button class="bg-white/10  text-red-700 py-1 px-3 rounded-md opacity-90 hover:opacity-100 ease-in-out duration-100" (click)="showFormDeleteRole(rol.id)">Eliminar</button>
+                </div>        
+            </ng-container>
+            <div  class="p-3 bg-white/10 flex flex-row items-center gap-2">
+                <button class="bg-white/10 text-white  py-1 px-3 rounded-md opacity-90 hover:opacity-100 ease-in-out duration-100" (click)="showFormCreateRole()">Nuevo Rol</button>
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>Editar Permisos</h3>
+        <div>
+            <select class="bg-white/20 rounded p-2 text-white"  (change)="getDataRole($event)">
+                <option class=" bg-black/90 text-white" value="">Seleccionar un rol</option>
+                <option class=" bg-black/90  text-white" *ngFor="let rol of roles" [value]="rol.id">{{ rol.name }}</option>
+            </select>
+        </div>
+        <div class="flex flex-col gap-2">
+            <ng-container *ngFor="let roleDetail of rolesDetailAux">
+                <div class="p-3 bg-white/10 flex flex-row items-center gap-2">
+
+                    <div class="flex items-center">
+                    
+                        <input type="checkbox" [checked]="roleDetail.check" (change)="handleChange(roleDetail.id,roleDetail.rol_id, $event)">
+                    </div>
+                    <div>
+                        <p class="text-white text-lg">{{roleDetail.name}}</p>
+                        <p class="text-white/80 text-xs">{{roleDetail.description}}</p>
+                    </div>
+                </div>
+            
+            </ng-container>
+            <ng-container *ngIf="rolesDetailAux.length > 0">
+                <div  class="p-3 bg-white/10 flex flex-row items-center gap-2">
+                    <button class="bg-white/10 text-white  py-1 px-3 rounded-md opacity-90 hover:opacity-100 ease-in-out duration-100" (click)="saveRolesData()">Guardar</button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<app-modal-edit-roles [idRole]="idRoleToEdit" (cancelled)="closeModalEdit()"  *ngIf="showFormEditRoleBoolean"></app-modal-edit-roles>
+<app-modal-create-roles (cancelled)="closeModalCreate()"  *ngIf="showFormCreateRoleBoolean"></app-modal-create-roles>
+<app-modal-delete-roles [idRole]="idRoleToEdit" (cancelled)="closeModalDelete()" *ngIf="showFormDeleteRoleBoolean"></app-modal-delete-roles>

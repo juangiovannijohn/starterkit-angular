@@ -1,0 +1,19 @@
+<div>  
+    <!--Menu  -->
+    <div class="bg-slate-700 text-white/90">
+        <h3>Menu</h3>
+        <p>Rol: {{role}}</p>
+        <ul>
+            <li><a  routerLink="perfil">Perfil</a></li>
+            <li><a  routerLink="roles">Roles de usuario</a></li>
+            <li><button (click)="openModal()">Cerrar sesión</button></li>
+        </ul>
+    </div>
+    <!-- Components -->
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
+<app-confirm [message]="'¿Seguro desea cerrar sesión?'" (confirmed)="cerrarSesion()"
+(cancelled)="closeModal()" *ngIf="showModal"></app-confirm>
